@@ -78,6 +78,13 @@ goto :eof
 
 %Dir_Simple% %arg1%
 set x1=%errorlevel%
+
+if %arg2%H == :rH (
+%Open% %arg1% %x1%  %arg2%  %arg3%
+set Result=%x1%
+goto :ElseDo
+)
+
 %Open% %arg1% %x1%  %arg2%  %arg3%
 
 if %x1% == 0 (

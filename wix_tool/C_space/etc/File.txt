@@ -6,4 +6,4 @@ EXC_in|Do|EXC_Out|EXCp_Out|Pattern	(±¾ÐÐÎª×¢ÊÍÐÐÃ»ÓÐÐ§¹û,*±íÊ¾²»ÐÞ¸ÄÄ¬ÈÏ,ÐÞ¸ÄÊ±×
 :n+|Y|"D:\Program Files\notepad_plus\notepad++.exe"|*|process
 :v|Y|vim|*|cmd
 vim|Y|*|*|cmd
-:vsc|Y|"D:\Program Files (x86)\VScode\Microsoft VS Code\bin\code.cmd"|*|process
+:vc|Y|"D:\Program Files (x86)\VScode\Microsoft VS Code\bin\code.cmd"|*|process

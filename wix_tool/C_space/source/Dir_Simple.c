@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     printf("Dir_simple:%s\n", Target_Path);                   //调试
 #endif
 
-    int Back = check_dir(argv[1]);
+    int Back = check_dir(Target_Path);
     FreeLibrary(hdll);                                        //释放加载的动态库
 
 #if DEBUG_dir_simple

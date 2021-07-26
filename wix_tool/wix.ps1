@@ -33,17 +33,29 @@ return
 & $Dir_Simple ("`""+$arg1+"`"").Split()
 $x1=$LASTEXITCODE
 
+#定制化，删减固有接口
+if($arg2.CompareTo(":r") -eq 0){
+	if($x1 -eq 2){
+	dir $arg1
+	}
+	elseif($x1 -eq 1){
+	& $Open ("`""+$arg1+"`""+" "+$x1+" "+$arg2+" "+$arg3).Split()
+	}
+	elseif($x1 -eq 0){
+	Write-Host "此文件不存在或存在路径错误"
+	}
+	return
+}
+
+
+
 if($x1 -eq 0){
 & $New ("`""+$arg1+"`""+" "+$x1).Split()
 & $Dir_Simple ("`""+$arg1+"`"").Split()
 $x1=$LASTEXITCODE
 }
 
-#定制化，删减固有接口
-if(($arg2.CompareTo(":r") -eq 0) -and ($x1 -eq 2)){}
-else{
-& $Open ("`""+$arg1+"`""+" "+$x1+" "+$arg2+" "+$arg3).Split()
-}
+
 
 
 #===============================================================================ps
@@ -60,10 +72,6 @@ if($arg2.CompareTo(":c") -eq 0){
  elseif($x1 -eq 1){
  cd $arg1+"/.."
  }
-}
-
-if(($arg2.CompareTo(":r") -eq 0) -and ($x1 -eq 2)){
-dir $arg1
 }
 #===============================================================================swicth写法
 #switch -case ($arg0){

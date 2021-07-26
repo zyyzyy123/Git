@@ -11,7 +11,10 @@ EXPORT int check_dir(char* Target_Path){
     else{
         FILE *P=fopen(Target_Path,"r");
         if(P==NULL){return 2;}
-        else{fclose(P);return 1;}
+        else{
+			fclose(P);
+			if(Target_Path[strlen(Target_Path)-1]=='\\')return 0;
+			return 1;}
     }
 }
 

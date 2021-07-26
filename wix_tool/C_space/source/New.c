@@ -21,9 +21,10 @@ int main(int argc,char* argv[]){
     hdll = LoadLibraryA(DLL_wix_path);                        //加载动态库
 
     GetFullPathNameA(argv[1],_MAX_PATH,Target_Path,NULL);       //得到全路径
-    _splitpath(Target_Path,NULL,NULL,NULL,Target_Ext);          //得到后缀
+//    _splitpath(Target_Path,NULL,NULL,NULL,Target_Ext);          //得到后缀
     
-    if(!strlen(Target_Ext)){                                    //判断后缀  
+//   if(!strlen(Target_Ext)){                                    //判断后缀  
+	if(Target_Path[strlen(Target_Path)-1]=='\\'){
         CreateDF = (DLLFUNC_1)GetProcAddress(hdll, "CreateDoc");//加载函数
     }
     else{
