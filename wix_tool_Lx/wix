@@ -1,0 +1,60 @@
+#!/bin/bash
+
+#===============================================================================初始化
+#arg1 target
+#arg2 EXC
+arg0=$0
+arg1=$1
+arg2=$2
+HelpDoc="$(dirname $0)/help/$(basename $0).txt"
+arg_test="$(dirname $0)/C_space/test/arg_test"
+Dir_Simple="$(dirname $0)/C_space/bin/Dir_Simple"
+Open="$(dirname $0)/C_space/bin/Open"
+New="$(dirname $0)/C_space/bin/New"
+#echo "arg1=$arg1"
+
+#===============================================================================shell
+if [ "$arg1" = "" ] || [ "$arg1" = "--help" ];then
+	$Open "$HelpDoc" 1 ":r"
+	exit
+elif [ "$arg1" = "///" ];then
+	$Open "$arg0" 1 ":n"
+	exit
+elif [ "$arg1" = "///h" ];then
+	$Open "$HelpDoc" 1 ":n"
+	exit
+fi
+#===============================================================================main
+#echo "bash:$Dir_Simple $arg1"
+$Dir_Simple "$arg1"
+X1=$?
+#echo "bash:X1=$X1"
+
+#===============定制化改造固有接口
+if [ "$arg2" = ":r" ]; then
+	if [ "$X1" = 0 ]; then
+		echo "路径名不合法"
+	else
+		$Open "$arg1" $X1 "$arg2" "${@:3}"
+	fi
+	exit
+fi
+#================
+
+if [ "$X1" = 0 ]; then
+$New "$arg1" $X1
+$Dir_Simple "$arg1"
+X1=$?
+#echo "bash:X1=$X1"
+fi
+
+
+if [ "$X1" = 0 ]; then
+echo "路径名不合法 或者 权限不够"
+exit
+fi
+
+$Open "$arg1" $X1 "$arg2" "${@:3}"
+echo "执行路径:($arg1)"
+#===============================================================================shell
+#			nothing to do
