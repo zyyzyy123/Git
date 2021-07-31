@@ -117,6 +117,14 @@ int CommandLine(char *argv[],int select){
 		printf("。\n");
 		#endif
 		
+		//在独立进程模式中,关闭exec进程的的标准输入输出和错误输出流到终端
+		if(select==1){
+			if((fcntl(0,F_SETFD,FD_CLOEXEC)==-1)||(fcntl(1,F_SETFD,FD_CLOEXEC)==-1)||(fcntl(2,F_SETFD,FD_CLOEXEC)==-1)){
+				#if DEBUG_CommandLine
+				printf("%s:执行子进程:fcntl err\n",__func__,getpid());
+				#endif	
+			}
+		}
 //		if(strcmp(argv_EXCp,"")==0){execlp(argv_EXC,argv_EXC,argv_Target_Path,(char *)0);}
 //		else{execlp(argv_EXC,argv_EXC,argv_EXCp,argv_Target_Path,(char *)0);}
 		execvp(argv[0],argv);
